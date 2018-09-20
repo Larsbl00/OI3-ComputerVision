@@ -1,0 +1,3 @@
+/home/juul/Documents/OI3-computer-vision/Tests/OpenCVFaceDetection/CMakeFiles/rebuild_cache.dir
+/home/juul/Documents/OI3-computer-vision/Tests/OpenCVFaceDetection/CMakeFiles/OpenCVFaceDetection.dir
+/home/juul/Documents/OI3-computer-vision/Tests/OpenCVFaceDetection/CMakeFiles/edit_cache.dir
