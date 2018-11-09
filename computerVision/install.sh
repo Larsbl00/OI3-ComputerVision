@@ -81,7 +81,6 @@ install_wiring_pi()
 
   cd ./wiringPi
   git pull origin
-  cd ./wiringPi
 
   ./build
 
