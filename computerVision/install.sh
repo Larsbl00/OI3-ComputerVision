@@ -105,3 +105,6 @@ install_open_cv
 
 #install raspicam
 install_raspicam
+
+#be cool
+sudo apt-get install ninvaders
