@@ -66,7 +66,7 @@ installOpenCV:
 	sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev
 	sudo wget https://github.com/opencv/opencv/archive/2.4.13.5.zip -O opencv-2.4.13.5.zip
 	sudo unzip opencv-2.4.13.5.zip
-	sudo cd opencv-2.4.13.5
+	cd opencv-2.4.13.5
 	sudo mkdir release
 	cd release
 	sudo cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
