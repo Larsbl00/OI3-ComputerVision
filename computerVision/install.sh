@@ -25,7 +25,7 @@ install_raspicam()
   display_quote_block INSTALLING_RASPICAM
   
   sudo apt-get update
-	git clone https://github.com/cedricve/raspicam .
+	git clone https://github.com/cedricve/raspicam
 
 	cd ./raspicam
 	mkdir build
