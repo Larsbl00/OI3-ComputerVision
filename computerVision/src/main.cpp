@@ -1,11 +1,12 @@
 #include <ctime>
 #include <iostream>
 #include <raspicam/raspicam_cv.h>
+
 using namespace std; 
 
 int main(int argc, char** argv)
 {
-  time_t timer_begin,timer_end;
+  	time_t timer_begin,timer_end;
 	raspicam::RaspiCam_Cv Camera;
 	cv::Mat image;
 	int nCount=100;
@@ -13,7 +14,7 @@ int main(int argc, char** argv)
 	Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 );
 	//Open camera
 	cout<<"Opening Camera..."<<endl;
-	if (!Camera.open()) {cerr<<"Error opening the camera"<<endl;return -1;}
+	if (!Camera.open()) {cerr<<"Error opening the camera"<<endl; return -1;}
 	//Start capture
 	cout<<"Capturing "<<nCount<<" frames ...."<<endl;
 	time ( &timer_begin );
