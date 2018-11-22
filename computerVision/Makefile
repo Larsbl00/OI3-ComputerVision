@@ -13,7 +13,8 @@ CFLAGS = -Wall -Werror -ggdb -O0 -std=c++11 -lpthread -I/usr/local/include/ -lra
 #Sources
 SRC_DIR = ./src
 
-SOURCES = $(SRC_DIR)/main.cpp
+SOURCES = 	$(SRC_DIR)/main.cpp \
+			$(SRC_DIR)/Camera.cpp
 
 #Objects
 OBJ_DIR = ./obj
