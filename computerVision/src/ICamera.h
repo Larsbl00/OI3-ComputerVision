@@ -8,9 +8,8 @@ class ICamera
 {
     public:
         virtual ~ICamera(){}
-
+        const void* GetImageData() const;
         virtual void Capture() = 0;
-        virtual void Capture(int16_t frameCount) = 0;
         virtual void Save(const std::string& fileName) = 0;
 };
 

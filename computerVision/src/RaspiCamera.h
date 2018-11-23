@@ -10,7 +10,7 @@
 #include <raspicam/raspicam.h>
 #include <unistd.h>
 
-#define CAMERA_BOOT_TIME (3000000)
+#define CAMERA_BOOT_TIME_MICROS (0)
 
 class RaspiCamera : public ICamera
 {
@@ -20,8 +20,7 @@ class RaspiCamera : public ICamera
         ~RaspiCamera();
 
         void Capture();
-        void Capture(int16_t frameCount);
-
+        const void* GetImageData() const;
         void Save(const std::string& fileName);
 
     private:

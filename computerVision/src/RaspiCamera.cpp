@@ -9,9 +9,9 @@ RaspiCamera::RaspiCamera()
 {
     this->OpenCamera();
     std::cout << "Booting camera, please wait for " 
-        << (float) CAMERA_BOOT_TIME/1000000 << " seconds" << std::endl;
+        << (float) CAMERA_BOOT_TIME_MICROS/1000000 << " seconds" << std::endl;
     
-    usleep(CAMERA_BOOT_TIME);
+    usleep(CAMERA_BOOT_TIME_MICROS);
 }
 
 RaspiCamera::~RaspiCamera()
@@ -26,12 +26,9 @@ void RaspiCamera::Capture()
     this->camera.retrieve(this->imageData, raspicam::RASPICAM_FORMAT_RGB);
 }
 
-void RaspiCamera::Capture(int16_t frameCount)
+const void* RaspiCamera::GetImageData() const
 {
-    for (int16_t i = 0; i < frameCount; i++)
-    {
-        this->Capture();
-    }
+    return this->imageData;
 }
 
 void RaspiCamera::Save(const std::string& fileName)
