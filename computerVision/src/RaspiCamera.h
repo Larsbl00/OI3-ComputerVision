@@ -6,9 +6,11 @@
 #include <ctime>
 #include <fstream>
 #include <iostream>
+#include <opencv2/core.hpp>
+#include <raspicam/raspicam_cv.h>
 #include <stdexcept>
-#include <raspicam/raspicam.h>
 #include <unistd.h>
+
 
 #define CAMERA_BOOT_TIME_MICROS (0)
 
@@ -25,8 +27,8 @@ class RaspiCamera : public ICamera
 
     private:
 
-        raspicam::RaspiCam camera;
-        unsigned char* imageData;
+        raspicam::RaspiCam_Cv camera;
+        cv::Mat imageData;
 
         void OpenCamera();
         void StopCamera();

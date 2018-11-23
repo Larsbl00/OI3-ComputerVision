@@ -5,8 +5,8 @@
 /////////////////////////
 
 RaspiCamera::RaspiCamera()
-    :imageData(new unsigned char[camera.getImageTypeSize(raspicam::RASPICAM_FORMAT_RGB)])
 {
+    this->camera.set(cv::CAP_PROP_FORMAT, CV_8UC1);
     this->OpenCamera();
     std::cout << "Booting camera, please wait for " 
         << (float) CAMERA_BOOT_TIME_MICROS/1000000 << " seconds" << std::endl;
@@ -17,26 +17,22 @@ RaspiCamera::RaspiCamera()
 RaspiCamera::~RaspiCamera()
 {
     this->StopCamera();
-    delete[] this->imageData;
 }
 
 void RaspiCamera::Capture()
 {
     this->camera.grab();
-    this->camera.retrieve(this->imageData, raspicam::RASPICAM_FORMAT_RGB);
+    this->camera.retrieve(this->imageData);
 }
 
 const void* RaspiCamera::GetImageData() const
 {
-    return this->imageData;
+    return &this->imageData;
 }
 
 void RaspiCamera::Save(const std::string& fileName)
 {
-    std::ofstream outFile (fileName, std::ios::binary);
-    outFile << "P6\n" << camera.getWidth() << " " << camera.getHeight() << " 255\n";
-	outFile.write((char*) imageData, camera.getImageTypeSize(raspicam::RASPICAM_FORMAT_RGB));
-    std::cout << "Saved image as \"" << fileName << "\"" << std::endl;
+    cv::imwrite(fileName, imageData);
 }
 
 ///////////////////////////
@@ -53,8 +49,5 @@ void RaspiCamera::OpenCamera()
 
 void RaspiCamera::StopCamera()
 {
-    if (camera.open())
-    {
-        camera.release();
-    }
+    camera.release();
 }
