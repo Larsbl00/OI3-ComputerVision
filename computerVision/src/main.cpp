@@ -1,9 +1,12 @@
 #include <iostream>
 
-using namespace std; 
+#include "ICamera.h"
+#include "RaspiCamera.h"
 
 int main(int argc, char** argv)
 {
+	ICamera* cam = new RaspiCamera();
+
 	//Start capture
 	cout<<"Capturing "<<nCount<<" frames ...."<<endl;
 	time ( &timer_begin );

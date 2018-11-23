@@ -1,15 +1,17 @@
-#ifndef CAMERA_H
-#define CAMERA_H
+#ifndef RASPI_CAMERA_H
+#define RASPI_CAMERA_H
+
+#include "ICamera.h"
 
 #include <iostream>
 #include <stdexcept>
 
-class Camera
+class RaspiCamera : public ICamera
 {
     public:
 
-        Camera();
-        ~Camera();
+        RaspiCamera();
+        ~RaspiCamera();
 
         void Capture();
         void Capture(int16_t frameCount);

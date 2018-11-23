@@ -1,28 +1,28 @@
-#include "Camera.h"
+#include "RaspiCamera.h"
 
 /////////////////////////
 //Public Methods
 /////////////////////////
 
-Camera::Camera()
+RaspiCamera::RaspiCamera()
 {
     //set camera params
 	this->Camera.set(CV_CAP_PROP_FORMAT, CV_8UC1);
     this->OpenCamera();
 }
 
-Camera::~Camera()
+RaspiCamera::~RaspiCamera()
 {
     this->StopCamera();
 }
 
-void Camera::Capture()
+void RaspiCamera::RaspiCamera()
 {
     this->Camera.grab();
     this->Camera.retrieve(image);
 }
 
-void Camera::Capture(int16_t frameCount)
+void RaspiCamera::RaspiCamera(int16_t frameCount)
 {
     time(&this->timer_begin);
     for (int16_t i = 0; i < frameCount; i++)
@@ -36,7 +36,7 @@ void Camera::Capture(int16_t frameCount)
 //Private Methods
 /////////////////////////
 
-void Camera::OpenCamera()
+void RaspiCamera::OpenCamera()
 {
     if (!camera.open()) 
     {
@@ -44,7 +44,7 @@ void Camera::OpenCamera()
     }
 }
 
-void Camera::StopCamera()
+void RaspiCamera::StopCamera()
 {
     if (camera.open())
     {
