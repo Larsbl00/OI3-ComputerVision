@@ -1,10 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <cstdint>
-#include <ctime>
 #include <iostream>
-#include <raspicam/raspicam_cv.h>
 #include <stdexcept>
 
 class Camera
