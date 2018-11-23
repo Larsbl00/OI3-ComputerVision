@@ -2,9 +2,9 @@
 
 #vars
 remote_id="pi"
-remote_ip="169.254.225.189"
+remote_ip="169.254.152.1"
 work_dir="~/OI3/ComputerVision/"
-send_dir="find . ! -path 'obj/'"
+send_dir="find ./ -type d -name \"obj\" -prune -o -type f -print"    
 
 is_connecting="false"
 
