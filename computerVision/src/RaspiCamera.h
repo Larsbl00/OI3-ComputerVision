@@ -22,7 +22,7 @@ class RaspiCamera : public ICamera
         ~RaspiCamera();
 
         void Capture();
-        const void* GetImageData() const;
+        cv::Mat& GetImageData();
         void Save(const std::string& fileName);
 
     private:

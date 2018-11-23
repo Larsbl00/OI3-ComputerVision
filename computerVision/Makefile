@@ -10,7 +10,7 @@ CXX = g++
 #Flags
 CFLAGS = -Wall -Werror -ggdb -O0 -std=c++11 -lpthread \
 	-I/usr/local/include/ -lraspicam -lraspicam_cv -lopencv_core \
-	-lopencv_imgcodecs -lopencv_objdetect
+	-lopencv_imgcodecs -lopencv_objdetect -lopencv_imgproc
 
 #Sources
 SRC_DIR = ./src

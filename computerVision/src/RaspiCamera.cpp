@@ -7,11 +7,9 @@
 RaspiCamera::RaspiCamera()
 {
     this->camera.set(cv::CAP_PROP_FORMAT, CV_8UC1);
+    this->camera.set(cv::CAP_PROP_FRAME_WIDTH, 320);
+    this->camera.set(cv::CAP_PROP_FRAME_HEIGHT, 240);
     this->OpenCamera();
-    std::cout << "Booting camera, please wait for " 
-        << (float) CAMERA_BOOT_TIME_MICROS/1000000 << " seconds" << std::endl;
-    
-    usleep(CAMERA_BOOT_TIME_MICROS);
 }
 
 RaspiCamera::~RaspiCamera()
@@ -25,9 +23,9 @@ void RaspiCamera::Capture()
     this->camera.retrieve(this->imageData);
 }
 
-const void* RaspiCamera::GetImageData() const
+cv::Mat& RaspiCamera::GetImageData()
 {
-    return &this->imageData;
+    return this->imageData;
 }
 
 void RaspiCamera::Save(const std::string& fileName)
