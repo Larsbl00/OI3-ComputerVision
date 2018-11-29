@@ -1,3 +1,5 @@
+#!/bin/bash
+
 display_quote_block()
 {
   echo ""

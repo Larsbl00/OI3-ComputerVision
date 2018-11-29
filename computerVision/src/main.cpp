@@ -12,8 +12,9 @@
 #include <iostream>
 #include <thread>
 
-std::string FaceCascadeFileName = "./haarcascades/haarcascade_frontalface_alt.xml";
-std::string EyesCascadeFileName = "./haarcascades/haarcascade_eye_tree_eyeglasses.xml";
+#define CASCADE_FILE_FACE ("./haarcascades/haarcascade_frontalface_alt.xml")
+#define CASCADE_FILE_EYES ("./haarcascades/haarcascade_eye_tree_eyeglasses.xml")
+
 cv::CascadeClassifier FaceCascade;
 cv::CascadeClassifier EyesCascade;
 
@@ -21,23 +22,15 @@ cv::CascadeClassifier EyesCascade;
 // FUNCTIONS
 //////////////////////////////////////////
 
+bool LoadCascadeFromFile(cv::CascadeClassifier& classifier, const std::string& file)
+{
+    return classifier.load(file);
+}
+
 bool LoadHaarcascades()
 {
-    //Load face cascade.
-    if(!FaceCascade.load(FaceCascadeFileName))
-    {  
-        std::cout << "ERROR: cannot load face cascade." << std::endl;
-        return false; 
-    }
-
-    //Load eye cascade.
-    if(!EyesCascade.load(EyesCascadeFileName))
-    { 
-        std::cout << "ERROR: cannot load eyes cascade." << std::endl;
-        return false; 
-    }
-
-    return true;
+    return (LoadCascadeFromFile(FaceCascade, CASCADE_FILE_FACE) 
+    && LoadCascadeFromFile(EyesCascade, CASCADE_FILE_EYES));
 }
 
 void GetEyesFromFrame(cv::Mat& frame, std::vector<cv::Rect>& eyes)
@@ -56,13 +49,14 @@ int main ( int argc,char **argv )
 {
 	ICamera* cam = new RaspiCamera();
 
+    //Exit when you can't load te HAAR cascades
     if (!LoadHaarcascades())
     {
         exit(-1);
     }
 
     int iter = 0;
-    int numOfImages = 240;
+    int numOfImages = 10;
     std::vector<cv::Rect> faces;
 	while(iter < numOfImages)
 	{
@@ -70,12 +64,9 @@ int main ( int argc,char **argv )
 
 		cv::Mat& frame = cam->GetImageData();
 
-		//Break if frame is empty.
+		//Skip if empty
 		if(!frame.empty())
 		{
-            //Convert and equalize frame.
-            //cv::cvtColor(frame, frameGrayscale, cv::COLOR_BGR2GRAY );
-
             //Equalize.
             cv::equalizeHist(frame, frame);
 
@@ -83,33 +74,14 @@ int main ( int argc,char **argv )
             GetFacesFromFrame(frame, faces);
 
             //Loop through faces.
-            for(auto face : faces)
+            for(auto& face : faces)
             {
                 //Get face center point.
                 cv::Point faceCenter(face.x + face.width / 2.0, face.y + face.height / 2.0);
 
                 //Draw ellipse on screen where the face is detected.
-                cv::ellipse(frame, faceCenter, cv::Size( face.width / 2.0, face.height / 2.0), 0, 0, 360, cv::Scalar( 0, 0, 255 ), 4, 8, 0);
-                /*
-                //Get frame frame.
-                cv::Mat faceFrame = frameGrayscale(faces[i]);
-
-                //Get faces.
-                std::vector<cv::Rect> eyes = GetEyesFromFrame(faceFrame);
-                
-                //Draw ellipse on screen where the eyes are detected.
-                for( size_t j = 0; j < eyes.size(); j++ )
-                {
-                    //Get eye center point.
-                    cv::Point eyeCenter(faces[i].x + eyes[j].x + eyes[j].width / 2.0, faces[i].y + eyes[j].y + eyes[j].height / 2.0 );
-                    
-                    //Get eye radius.
-                    int radius = cvRound((eyes[j].width + eyes[j].height) * 0.25);
-
-                    //Draw circle.
-                    cv::circle( frame, eyeCenter, radius, cv::Scalar( 255, 0, 0 ), 2, 4, 0 );
-                }
-                */
+                cv::ellipse(frame, faceCenter, cv::Size( face.width / 2.0, face.height / 2.0),
+                    0, 0, 360, cv::Scalar( 0, 0, 255 ), 4, 8, 0);
             }
             
             cam->Save("./images/image_with_highlighting (" + std::to_string(iter) + ").jpg");
