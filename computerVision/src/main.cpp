@@ -29,8 +29,8 @@ bool LoadCascadeFromFile(cv::CascadeClassifier& classifier, const std::string& f
 
 bool LoadHaarcascades()
 {
-    return (LoadCascadeFromFile(FaceCascade, CASCADE_FILE_FACE) 
-    && LoadCascadeFromFile(EyesCascade, CASCADE_FILE_EYES));
+    return (LoadCascadeFromFile(FaceCascade, CASCADE_FILE_FACE) //Load face file
+    && LoadCascadeFromFile(EyesCascade, CASCADE_FILE_EYES));    //Load eye file
 }
 
 void GetEyesFromFrame(cv::Mat& frame, std::vector<cv::Rect>& eyes)
@@ -56,7 +56,7 @@ int main ( int argc,char **argv )
     }
 
     int iter = 0;
-    int numOfImages = 10;
+    int numOfImages = 100;
     std::vector<cv::Rect> faces;
 	while(iter < numOfImages)
 	{
@@ -85,7 +85,7 @@ int main ( int argc,char **argv )
             }
             
             cam->Save("./images/image_with_highlighting (" + std::to_string(iter) + ").jpg");
-            printf("%i\n", iter);
+            std::cout << "Image number: " << iter << std::endl;
 
 		}
         iter++;
