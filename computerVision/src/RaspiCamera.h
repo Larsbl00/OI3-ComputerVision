@@ -1,7 +1,7 @@
 #ifndef RASPI_CAMERA_H
 #define RASPI_CAMERA_H
 
-#include "ICamera.h"
+#include "ICvCamera.h"
 
 #include <ctime>
 #include <fstream>

@@ -1,14 +1,14 @@
-#ifndef ICAMERA_H
-#define ICAMERA_H
+#ifndef ICV_CAMERA_H
+#define ICV_AMERA_H
 
 #include <cstdint>
 #include <opencv2/core.hpp>
 #include <string>
 
-class ICamera
+class ICvCamera
 {
     public:
-        virtual ~ICamera(){}
+        virtual ~ICvCamera(){}
         virtual cv::Mat& GetImageData() = 0;
         virtual void Capture() = 0;
         virtual void Save(const std::string& fileName) = 0;
