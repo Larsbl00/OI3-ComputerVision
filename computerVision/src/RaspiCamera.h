@@ -11,7 +11,7 @@
 #include <stdexcept>
 #include <unistd.h>
 
-class RaspiCamera : public ICamera
+class RaspiCamera : public ICvCamera
 {
     public:
 

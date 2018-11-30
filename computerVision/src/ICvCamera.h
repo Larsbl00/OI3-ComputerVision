@@ -1,5 +1,5 @@
 #ifndef ICV_CAMERA_H
-#define ICV_AMERA_H
+#define ICV_CAMERA_H
 
 #include <cstdint>
 #include <opencv2/core.hpp>

@@ -2,10 +2,18 @@
 #define FACE_H
 
 #include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/objdetect.hpp>
+#include <opencv2/imgproc.hpp>
 
+typedef cv::Rect Face;
+
+/*
 struct Face 
 {
-    cv::Point;
+    public:
+        cv::Rect location;
 };
+*/
 
 #endif

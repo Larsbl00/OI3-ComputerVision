@@ -4,12 +4,12 @@
 //Constructor/ Destructor
 ///////////////////////////
 ComputerVision::ComputerVision(ICvCamera& camera, ICvAnalyze& faceAnalyzer)
-    :camera(camera), faceAnalyzer(faceAnalyzer)
+    :camera(camera), faceAnalyzer(faceAnalyzer), faces(NULL)
 {
 
 }
 
-ComputerVision::~ComputerVision();
+ComputerVision::~ComputerVision()
 {
     
 }
@@ -19,13 +19,13 @@ ComputerVision::~ComputerVision();
 ///////////////////////////
 std::vector<Face>& ComputerVision::GetFaces()
 {
-    return this->faces;
+    return *this->faces;
 }
 
 void ComputerVision::ScanFaces()
 {
     this->camera.Capture();
-    cv::Mat& frame = this->camera->GetImageData();
+    cv::Mat& frame = this->camera.GetImageData();
 
     //Check if the frame is empty, return if so
     if (frame.empty()) return;
@@ -34,5 +34,5 @@ void ComputerVision::ScanFaces()
     cv::equalizeHist(frame, frame);
 
     //Analyze frame for faces
-    auto& faces = faceAnalyzer.Analyze(frame);
+    faces = &faceAnalyzer.Analyze(frame);
 }

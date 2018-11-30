@@ -1,5 +1,7 @@
 #include "ComputerVision.h"
+#include "FaceAnalyzer.h"
 #include "IVision.h"
+#include "RaspiCamera.h"
 
 #include <ctime>
 #include <fstream>
@@ -29,12 +31,12 @@ int main (int argc,char **argv )
     for (int i = 0; i < imageCount; i++)
     {
         computerVision->ScanFaces();
-
         for (auto& face : computerVision->GetFaces())
         {
             cv::Point faceCenter(face.x + face.width / 2.0, face.y + face.height / 2.0);
-            cv::ellipse(frame, faceCenter, cv::Size( face.width / 2.0, face.height / 2.0),
-                    0, 0, 360, cv::Scalar( 0, 0, 255 ), 4, 8, 0);
+            cv::ellipse(raspiCam->GetImageData(), faceCenter, 
+                cv::Size( face.width / 2.0, face.height / 2.0), 0, 0, 360,
+                cv::Scalar( 0, 0, 255 ), 4, 8, 0);
 
         }
         raspiCam->Save("./images/image_with_highlighting (" + std::to_string(i) + ").jpg");

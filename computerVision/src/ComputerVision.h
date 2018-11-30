@@ -20,6 +20,7 @@ class ComputerVision : public IVision
     private:
         ICvCamera& camera;
         ICvAnalyze& faceAnalyzer;
+        std::vector<Face>* faces;
 };
 
 #endif
