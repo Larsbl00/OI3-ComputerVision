@@ -12,7 +12,7 @@ class FaceAnalyzer : public ICvAnalyze
         FaceAnalyzer(const std::string& cascadeFile);
         ~FaceAnalyzer();
 
-        std::vector<cv::Rect>& Analyze(const cv::Mat& material);
+        std::vector<cv::Rect>& Analyze(const cv::Mat& matrix);
     
     private:
         cv::CascadeClassifier cascade;
