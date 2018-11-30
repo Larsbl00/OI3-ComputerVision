@@ -11,7 +11,9 @@ ComputerVision::ComputerVision(ICvCamera& camera, ICvAnalyze& faceAnalyzer)
 
 ComputerVision::~ComputerVision()
 {
-    
+    //Pointer set to NULL and not deleted,
+    //since it points to an externally stored vector
+    this->faces = NULL; 
 }
 
 ///////////////////////////
