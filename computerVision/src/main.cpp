@@ -45,9 +45,9 @@ void GetFacesFromFrame(cv::Mat& frame, std::vector<cv::Rect>& faces)
     FaceCascade.detectMultiScale(frame, faces, 1.1, 2, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
 }
 
-int main ( int argc,char **argv ) 
+int main (int argc,char **argv ) 
 {
-	ICamera* cam = new RaspiCamera();
+	ICamera* cam = new RaspiCamera(240, 360);
 
     //Exit when you can't load te HAAR cascades
     if (!LoadHaarcascades())

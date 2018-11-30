@@ -11,14 +11,11 @@
 #include <stdexcept>
 #include <unistd.h>
 
-
-#define CAMERA_BOOT_TIME_MICROS (0)
-
 class RaspiCamera : public ICamera
 {
     public:
 
-        RaspiCamera();
+        RaspiCamera(size_t imageHeight, size_t imageWidth);
         ~RaspiCamera();
 
         void Capture();
