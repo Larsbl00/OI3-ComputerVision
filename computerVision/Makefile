@@ -16,7 +16,9 @@ CFLAGS = -Wall -Werror -ggdb -O0 -std=c++11 -lpthread \
 SRC_DIR = ./src
 
 SOURCES = 	$(SRC_DIR)/main.cpp \
-			$(SRC_DIR)/RaspiCamera.cpp
+			$(SRC_DIR)/RaspiCamera.cpp \
+			$(SRC_DIR)/FaceAnalyzer.cpp \
+			$(SRC_DIR)/ComputerVision.cpp
 
 #Objects
 OBJ_DIR = ./obj
