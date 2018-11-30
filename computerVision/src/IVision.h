@@ -8,7 +8,7 @@
 class IVision
 {
     public: 
-        ~IVision(){}
+        virtual ~IVision(){}
         
         virtual std::vector<Face>& GetFaces() = 0;
         virtual void ScanFaces() = 0;
