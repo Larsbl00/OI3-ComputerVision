@@ -4,16 +4,14 @@
 //Constructor/ Destructor
 ///////////////////////////
 ComputerVision::ComputerVision(ICvCamera& camera, ICvAnalyze& faceAnalyzer)
-    :camera(camera), faceAnalyzer(faceAnalyzer), faces(NULL)
+    :camera(camera), faceAnalyzer(faceAnalyzer)
 {
 
 }
 
 ComputerVision::~ComputerVision()
 {
-    //Pointer set to NULL and not deleted,
-    //since it points to an externally stored vector
-    this->faces = NULL; 
+
 }
 
 ///////////////////////////
@@ -21,12 +19,16 @@ ComputerVision::~ComputerVision()
 ///////////////////////////
 std::vector<Face>& ComputerVision::GetFaces()
 {
-    return *this->faces;
+    return this->faces;
 }
 
 void ComputerVision::ScanFaces()
 {
+    //Clear the list containing all faces
+    this->faces.clear();
+    //Take a picture of the current screen
     this->camera.Capture();
+
     cv::Mat& frame = this->camera.GetImageData();
 
     //Check if the frame is empty, return if so
@@ -35,6 +37,13 @@ void ComputerVision::ScanFaces()
     //Equalize.
     cv::equalizeHist(frame, frame);
 
-    //Analyze frame for faces
-    faces = &faceAnalyzer.Analyze(frame);
+    //Analyze rectangles of faces
+    std::vector<cv::Rect>& faceRectangles = faceAnalyzer.Analyze(frame);
+
+    for (auto rect : faceRectangles)
+    {
+        Face person(rect);
+
+        this->faces.push_back(person);
+    }
 }

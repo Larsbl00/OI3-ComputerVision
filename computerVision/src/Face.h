@@ -6,14 +6,14 @@
 #include <opencv2/objdetect.hpp>
 #include <opencv2/imgproc.hpp>
 
-typedef cv::Rect Face;
-
-/*
 struct Face 
 {
     public:
-        cv::Rect location;
+        const cv::Point center;
+        const cv::Rect face;
+
+        Face(const cv::Rect& faceRect);
 };
-*/
+
 
 #endif

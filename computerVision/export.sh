@@ -4,8 +4,8 @@
 remote_id="pi"
 remote_ip="169.254.152.1"
 work_dir="~/OI3/ComputerVision/"
-send_dir="find ./ -type d -name \"obj\" -prune -o -type f -print"    
-
+send_dir="./" 
+image_dir="./images"
 is_connecting="false"
 
 
@@ -24,13 +24,17 @@ do
 done
 
 SEND="scp -r $send_dir $remote_id@$remote_ip:$work_dir"
+REMOVE_FILES="rm -rf $image_dir"
 
 echo "Remote id: $remote_id"
 echo "Remote ip: $remote_ip"
 echo "Remote directory: $work_dir"
 echo "Sending: $send_dir"
 echo "Command: $SEND"
+echo "Removing: \n\t$image_dir"
+echo "Using: $REMOVE_FILES"
 
+$REMOVE_FILES
 $SEND 
 
 if [ "$is_connecting" = "true" ]
