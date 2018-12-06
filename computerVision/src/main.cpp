@@ -37,16 +37,14 @@ int main(int argc, char **argv)
             if (!face.face.empty())
             {
                 std::cout << "Detected face: " << i << " -> (" << face.face.x << ", " << face.face.y << ")" << std::endl;
+                cv::ellipse(raspiCam->GetImageData(), face.center,
+                    cv::Size(face.face.width / 2.0, face.face.height / 2.0), 0, 0, 360,
+                    cv::Scalar(0, 0, 255), 4, 8, 0);     
             } 
-            
-            cv::ellipse(raspiCam->GetImageData(), face.center,
-                        cv::Size(face.face.width / 2.0, face.face.height / 2.0), 0, 0, 360,
-                        cv::Scalar(0, 0, 255), 4, 8, 0);     
-            
         }
 
         raspiCam->Save("./images/image(" + std::to_string(i) + ").jpg");
-        std::cout << "Saved image #" << i << std::endl;
+        std::cout << "Image #" << i << std::endl;
     }
 
     std::cout << "\n\n\nCompleted: " << IMAGE_COUNT << " images\n\n\n" << std::endl; 

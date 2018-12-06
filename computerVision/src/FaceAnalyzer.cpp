@@ -20,7 +20,7 @@ FaceAnalyzer::~FaceAnalyzer()
 std::vector<cv::Rect>& FaceAnalyzer::Analyze(const cv::Mat& matrix)
 {
     this->faces.clear();
-    this->cascade.detectMultiScale(matrix, this->faces, 1.3, 3, 0 | cv::CASCADE_SCALE_IMAGE, 
+    this->cascade.detectMultiScale(matrix, this->faces, 1.05, 4, 0 | cv::CASCADE_SCALE_IMAGE, 
         cv::Size(FACE_ANALYZER_MIN_WIDTH, FACE_ANALYZER_MIN_HEIGHT));
     return this->faces;
 }
