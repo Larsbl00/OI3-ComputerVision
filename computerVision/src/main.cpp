@@ -15,11 +15,12 @@
 
 #define CASCADE_FILE_FACE ("./haarcascades/haarcascade_frontalface_alt.xml")
 #define CASCADE_FILE_EYES ("./haarcascades/haarcascade_eye_tree_eyeglasses.xml")
+#define IMAGE_COUNT (200)
 
 int main(int argc, char **argv)
 {
     //Create camera
-    ICvCamera *raspiCam = new RaspiCamera(240, 360);
+    ICvCamera *raspiCam = new RaspiCamera(240, 320);
 
     //Create face analyzer
     ICvAnalyze *faceAnalyzer = new FaceAnalyzer(CASCADE_FILE_FACE);
@@ -27,21 +28,28 @@ int main(int argc, char **argv)
     //Create the vision
     IVision *computerVision = new ComputerVision(*raspiCam, *faceAnalyzer);
 
-    for (int i = 0; i < imageCount; i++)
+    for (size_t i = 0; i < IMAGE_COUNT; i++)
     {
         computerVision->ScanFaces();
-        for (auto face : computerVision->GetFaces())
-        {
-            cv::Point &faceCenter = face.center;
-            cv::ellipse(raspiCam->GetImageData(), faceCenter,
+
+        for (auto& face : computerVision->GetFaces())
+        {   
+            if (!face.face.empty())
+            {
+                std::cout << "Detected face: " << i << " -> (" << face.face.x << ", " << face.face.y << ")" << std::endl;
+            } 
+            
+            cv::ellipse(raspiCam->GetImageData(), face.center,
                         cv::Size(face.face.width / 2.0, face.face.height / 2.0), 0, 0, 360,
-                        cv::Scalar(0, 0, 255), 4, 8, 0);
+                        cv::Scalar(0, 0, 255), 4, 8, 0);     
+            
         }
-        raspiCam->Save("./images/image_with_highlighting (" + std::to_string(i) + ").jpg");
+
+        raspiCam->Save("./images/image(" + std::to_string(i) + ").jpg");
         std::cout << "Saved image #" << i << std::endl;
     }
 
-    printf("Done\n");
+    std::cout << "\n\n\nCompleted: " << IMAGE_COUNT << " images\n\n\n" << std::endl; 
 
     //Clean up
     delete raspiCam;

@@ -6,6 +6,9 @@
 #include <string>
 #include <stdexcept>
 
+#define FACE_ANALYZER_MIN_HEIGHT (30)
+#define FACE_ANALYZER_MIN_WIDTH (30)
+
 class FaceAnalyzer : public ICvAnalyze
 {
     public:
