@@ -20,7 +20,7 @@
 int main(int argc, char **argv)
 {
     //Create camera
-    ICvCamera *raspiCam = new RaspiCamera(240, 320);
+    ICvCamera *raspiCam = new RaspiCamera(320, 240);
 
     //Create face analyzer
     ICvAnalyze *faceAnalyzer = new FaceAnalyzer(CASCADE_FILE_FACE);

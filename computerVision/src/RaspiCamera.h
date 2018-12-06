@@ -15,7 +15,7 @@ class RaspiCamera : public ICvCamera
 {
     public:
 
-        RaspiCamera(size_t imageHeight, size_t imageWidth);
+        RaspiCamera(size_t imageWidth, size_t imageHeight);
         ~RaspiCamera();
 
         void Capture();

@@ -4,7 +4,7 @@
 //Public Methods
 /////////////////////////
 
-RaspiCamera::RaspiCamera(size_t imageHeight, size_t imageWidth)
+RaspiCamera::RaspiCamera(size_t imageWidth, size_t imageHeight)
 {
     this->camera.set(cv::CAP_PROP_FORMAT, CV_8UC1);
     this->camera.set(cv::CAP_PROP_FRAME_WIDTH, imageWidth);
