@@ -7,11 +7,11 @@
 
 class IVision
 {
-    public: 
-        virtual ~IVision(){}
-        
-        virtual std::vector<Face>& GetFaces() = 0;
-        virtual void ScanFaces() = 0;
+  public:
+    virtual ~IVision() {}
+
+    virtual std::vector<Face> &GetFaces() = 0;
+    virtual void ScanFaces() = 0;
 };
 
 #endif

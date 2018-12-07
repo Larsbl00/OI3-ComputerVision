@@ -10,17 +10,17 @@
 
 class ComputerVision : public IVision
 {
-    public: 
-        ComputerVision(ICvCamera& camera, ICvAnalyze& faceAnalyzer);    
-        ~ComputerVision();
+  public:
+    ComputerVision(ICvCamera &camera, ICvAnalyze &faceAnalyzer);
+    ~ComputerVision();
 
-        std::vector<Face>& GetFaces();
-        void ScanFaces();
+    std::vector<Face> &GetFaces();
+    void ScanFaces();
 
-    private:
-        ICvCamera& camera;
-        ICvAnalyze& faceAnalyzer;
-        std::vector<Face> faces;
+  private:
+    ICvCamera &camera;
+    ICvAnalyze &faceAnalyzer;
+    std::vector<Face> faces;
 };
 
 #endif
