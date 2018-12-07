@@ -16,6 +16,7 @@ class ComputerVisionModule
         void Stop();
 
     private:
+        IVision &cv;
         std::thread* cvThread;
 
         void Update();

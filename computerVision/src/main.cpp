@@ -34,19 +34,6 @@ int main(int argc, char **argv)
 
     for (size_t i = 0; i < IMAGE_COUNT; i++)
     {
-        computerVision->ScanFaces();
-
-        for (auto &face : computerVision->GetFaces())
-        {
-            if (!face.face.empty())
-            {
-                std::cout << "Detected face: " << i << " -> (" << face.face.x << ", " << face.face.y << ")" << std::endl;
-                cv::ellipse(raspiCam->GetImageData(), face.center,
-                            cv::Size(face.face.width / 2.0, face.face.height / 2.0), 0, 0, 360,
-                            cv::Scalar(0, 0, 255), 4, 8, 0);
-            }
-        }
-
         raspiCam->Save("./images/image(" + std::to_string(i) + ").jpg");
         std::cout << "Image #" << i << std::endl;
     }
