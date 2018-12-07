@@ -1,4 +1,5 @@
 #include "ComputerVision.h"
+#include "ComputerVisionModule.h"
 #include "FaceAnalyzer.h"
 #include "IVision.h"
 #include "ICvAnalyzer.h"
@@ -32,11 +33,10 @@ int main(int argc, char **argv)
     //Create the vision
     IVision *computerVision = new ComputerVision(*raspiCam, *faceAnalyzer);
 
-    for (size_t i = 0; i < IMAGE_COUNT; i++)
-    {
-        raspiCam->Save("./images/image(" + std::to_string(i) + ").jpg");
-        std::cout << "Image #" << i << std::endl;
-    }
+    ComputerVisionModule module(*raspiCam, *computerVision);
+
+    //Sleep 10 seconds
+    usleep(10000000);
 
     std::cout << "\n\n\nCompleted: " << IMAGE_COUNT << " images\n\n\n"
               << std::endl;
