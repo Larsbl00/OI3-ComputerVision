@@ -1,6 +1,7 @@
 #include "ComputerVision.h"
 #include "FaceAnalyzer.h"
 #include "IVision.h"
+#include "ICvAnalyzer.h"
 #include "RaspiCamera.h"
 
 #include <ctime>
