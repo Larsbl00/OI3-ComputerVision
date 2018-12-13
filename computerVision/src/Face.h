@@ -6,6 +6,8 @@
 #include <opencv2/objdetect.hpp>
 #include <opencv2/imgproc.hpp>
 
+#include "Point.h"
+
 struct Face 
 {
     public:
