@@ -16,7 +16,7 @@
 #define CASCADE_FILE_FACE ("./haarcascades/haarcascade_frontalface_alt.xml")
 #define CASCADE_FILE_EYES ("./haarcascades/haarcascade_eye_tree_eyeglasses.xml")
 #define IMAGE_COUNT (2000)
-#define FACE_ANALYZER_SCALE_FACTOR (1.85f)
+#define FACE_ANALYZER_SCALE_FACTOR (1.5f)
 #define FACE_ANALYZER_NEIGHBOR_COUNT (2)
 
 int main(int argc, char **argv)

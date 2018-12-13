@@ -2,12 +2,12 @@
 
 Point Point::Add(const Point& other)
 {
-    return Point{this->x + other.x, this->y + other.y};
+    return (Point){(uint16_t)(this->x + other.x), (uint16_t)(this->y + other.y)};
 }
 
 Point Point::Subtract(const Point& other)
 {
-    return Point{this->x - other.x, this->y - other.y};
+    return (Point){(uint16_t)(this->x - other.x), (uint16_t)(this->y - other.y)};
 }
 
 Point Point::operator+ (const Point& other)
