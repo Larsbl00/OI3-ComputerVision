@@ -21,6 +21,8 @@ SOURCES = 	$(SRC_DIR)/main.cpp \
 			$(SRC_DIR)/Face.cpp \
 			$(SRC_DIR)/FaceAnalyzer.cpp \
 			$(SRC_DIR)/RaspiCamera.cpp \
+			$(SRC_DIR)/Point.cpp \
+			$(SRC_DIR)/Size.cpp \
 
 #Objects
 OBJ_DIR = ./obj
