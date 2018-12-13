@@ -16,7 +16,7 @@
 #define CASCADE_FILE_FACE ("./haarcascades/haarcascade_frontalface_alt.xml")
 #define CASCADE_FILE_EYES ("./haarcascades/haarcascade_eye_tree_eyeglasses.xml")
 #define IMAGE_COUNT (2000)
-#define FACE_ANALYZER_SCALE_FACTOR (1.5f)
+#define FACE_ANALYZER_SCALE_FACTOR (1.85f)
 #define FACE_ANALYZER_NEIGHBOR_COUNT (2)
 
 int main(int argc, char **argv)
@@ -37,13 +37,10 @@ int main(int argc, char **argv)
 
         for (auto &face : computerVision->GetFaces())
         {
-            if (!face.face.empty())
-            {
-                std::cout << "Detected face: " << i << " -> (" << face.face.x << ", " << face.face.y << ")" << std::endl;
-                cv::ellipse(raspiCam->GetImageData(), face.center,
-                            cv::Size(face.face.width / 2.0, face.face.height / 2.0), 0, 0, 360,
+                std::cout << "Detected face: " << i << " -> (" << (float)face.center.x/320 << ", " << (float)face.center.y/240 << ")"<< std::endl;
+                cv::ellipse(raspiCam->GetImageData(), cv::Point(face.center.x, face.center.y),
+                            cv::Size(face.size.width / 2.0, face.size.height / 2.0), 0, 0, 360,
                             cv::Scalar(0, 0, 255), 4, 8, 0);
-            }
         }
 
         raspiCam->Save("./images/image(" + std::to_string(i) + ").jpg");

@@ -28,7 +28,7 @@ void ComputerVision::ScanFaces()
     //Take a picture of the current screen
     this->camera.Capture();
 
-    cv::Mat &frame = this->camera.GetImageData();
+    cv::Mat& frame = this->camera.GetImageData();
 
     //Check if the frame is empty, return if so
     if (frame.empty()) return;
@@ -37,12 +37,13 @@ void ComputerVision::ScanFaces()
     cv::equalizeHist(frame, frame);
 
     //Analyze rectangles of faces
-    std::vector<cv::Rect> &faceRectangles = faceAnalyzer.Analyze(frame);
+    std::vector<cv::Rect>& faceRectangles = faceAnalyzer.Analyze(frame);
 
     for (auto& rect : faceRectangles)
     {
-        Face person(rect);
-
+        if (rect.empty()) continue;
+        Face person((Point){(uint16_t)(rect.x + rect.width / 2), (uint16_t)(rect.y + rect.height / 2)}, 
+            (Size){(uint16_t)rect.width, (uint16_t)rect.height});
         this->faces.push_back(person);
     }
 }

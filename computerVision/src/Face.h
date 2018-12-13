@@ -1,21 +1,16 @@
 #ifndef FACE_H
 #define FACE_H
 
-#include <opencv2/core.hpp>
-#include <opencv2/opencv.hpp>
-#include <opencv2/objdetect.hpp>
-#include <opencv2/imgproc.hpp>
-
 #include "Point.h"
+#include "Size.h"
 
-struct Face 
+struct Face
 {
-    public:
-        const cv::Point center;
-        const cv::Rect face;
+  public:
+    const Point center;
+    const Size size;
 
-        Face(const cv::Rect& faceRect);
+    Face(const Point center, const Size size);
 };
-
 
 #endif
