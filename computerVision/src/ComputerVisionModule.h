@@ -6,23 +6,19 @@
 #include "IVision.h"
 
 #include <iostream>
-#include <thread>
 
 class ComputerVisionModule
 {
     public:
-        ComputerVisionModule(ICvCamera &cam, IVision &cv);
+        ComputerVisionModule(ICvCamera& cam, IVision& cv);
         ~ComputerVisionModule();
 
-        void Start();
-        void Stop();
+        void Update();
 
     private:
-        ICvCamera &camera;
-        IVision &cv;
-        std::thread* cvThread;
-
-        static void Update();
+        ICvCamera& camera;
+        IVision& cv;
+        
 };
 
 #endif
