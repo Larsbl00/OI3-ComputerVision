@@ -21,6 +21,8 @@
 #define FACE_ANALYZER_SCALE_FACTOR (1.85f)
 #define FACE_ANALYZER_NEIGHBOR_COUNT (2)
 
+/* @pre cvMode may not be NULL
+*/
 void CvUpdate(ComputerVisionModule* cvMod)
 {
     while (1)
