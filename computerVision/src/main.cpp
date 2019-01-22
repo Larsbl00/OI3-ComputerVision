@@ -45,6 +45,7 @@ int main(int argc, char **argv)
 
     ThreadHandler<ComputerVisionModule*> cvThread(CvUpdate, &cvMod);
 
+    /*There is a sleep here to see if the code would still properly function on a different thread*/
     usleep(1000000);
 
     //Clean up
